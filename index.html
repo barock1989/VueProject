@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-AU-Compatible" content="ie=edge">
+        <title>General Knowledge VueJs Project</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{ quiz.title }}<h1>
+            <div v-for="(question, index) in quiz.questions">
+                <div v-show="index === questionIndex">
+                    <h5>{{ question.text }}</h5>
+                    <ol>
+                        <li v-for="response in question.responses">
+                            <label>
+                                <input type="radio"
+                                v-bind:value="response.correct"
+                                v-bind:name="index"
+                                v-model="userResponses[index]"> {{response.text}}
+                            </label>
+                        </li>
+                    </ol>
+                    <button v-if="questionIndex > 0" v-on:click="prev">
+                        <div class="prev">prev</div>
+                    </button>
+                    <button v-on:click="next">
+                        <div class="next">next</div>
+                    </button>
+                </div>
+            </div>
+            <div v-show="questionIndex === quiz.questions.length">
+                <h3>
+                    THE END...
+                </h3>
+                <p>
+                    Total score: {{ score() }} / {{ quiz.questions.length }}
+                </p>
+            </div>
+        </div>
+        <script src="main.js"></script>
+        </centre>
+    </body>
+</html> 
